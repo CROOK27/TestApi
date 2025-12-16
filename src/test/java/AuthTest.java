@@ -1,4 +1,4 @@
-package autotest;
+package Test;
 
 import dto.RequestLoginDto;
 import io.qameta.allure.*;
