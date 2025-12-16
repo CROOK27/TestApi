@@ -1,7 +1,7 @@
 package Test;
 
 
-import dto.PageDtoProductDto;
+import Test.dto.PageDtoProductDto;
 import io.qameta.allure.*;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;

@@ -1,14 +1,15 @@
-package dto;
+package Test.dto;
+
 
 import lombok.Data;
 import java.util.UUID;
 
 @Data
-public class UpdateProductDto {
+public class ProductDto {
     private UUID id;
     private String name;
     private String characteristics;
     private Long price;
     private Long count;
-    private UUID categoryId;
+    private Double rating;
 }

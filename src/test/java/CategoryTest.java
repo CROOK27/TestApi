@@ -1,12 +1,12 @@
 package Test;
 
-import dto.RequestLoginDto;
+import Test.dto.RequestLoginDto;
 import io.qameta.allure.*;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import utils.TokenManager;
+import Test.utils.TokenManager;
 
 import java.util.List;
 import java.util.Map;

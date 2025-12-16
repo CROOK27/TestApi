@@ -1,4 +1,4 @@
-package utils;
+package Test.utils;
 
 import ru.rtc.medline.application.domain.model.User;
 

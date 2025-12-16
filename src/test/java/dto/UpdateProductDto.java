@@ -1,10 +1,10 @@
-package dto;
+package Test.dto;
 
 import lombok.Data;
 import java.util.UUID;
 
 @Data
-public class CreateProductDto {
+public class UpdateProductDto {
     private UUID id;
     private String name;
     private String characteristics;
