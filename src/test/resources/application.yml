@@ -1,40 +1,15 @@
+# src/test/resources/application.yml
+test:
+  base-url: http://localhost:${server.port:8080}/api
+  auth:
+    username: "testuser"
+    password: "testpassword"
+    client-id: "test-client"
+    client-secret: "test-secret"
+
+# Можно оставить ту же базу или использовать H2
 spring:
-  config:
-    activate:
-      on-profile: test
-
   datasource:
-    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;MODE=PostgreSQL
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
-
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    hibernate:
-      ddl-auto: create-drop
-    properties:
-      hibernate:
-        format_sql: true
-        show_sql: true
-
-  liquibase:
-    enabled: false
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include:
-  metrics:
-    export:
-      simple:
-        enabled: false
-
-logging:
-  level:
-    ROOT: WARN
-    ru.rtc.medline.application: DEBUG
-    org.springframework.test: DEBUG
-    org.hibernate.SQL: DEBUG
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    url: jdbc:postgresql://localhost:5432/student_store_test  # Тестовая БД
+    username: postgres
+    password: 123456
