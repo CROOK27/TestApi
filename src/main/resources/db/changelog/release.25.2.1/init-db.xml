@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.22.xsd">
+
+    <changeSet id="1" author="system">
+        <createTable tableName="roles">
+            <column name="id" type="uuid" defaultValueComputed="gen_random_uuid()">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="text">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="system">
+        <createTable tableName="users">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="phone" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="middle_name" type="text">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="birth_date" type="timestamp">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="password" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="users"
+                baseColumnNames="role_id"
+                referencedTableName="roles"
+                referencedColumnNames="id"
+                constraintName="fk_users_roles"
+                onDelete="RESTRICT"/>
+    </changeSet>
+
+    <changeSet id="3" author="system">
+        <insert tableName="roles">
+            <column name="name" value="ADMIN"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="USER"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

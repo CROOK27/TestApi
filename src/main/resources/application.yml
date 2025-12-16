@@ -1,0 +1,70 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: application-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/student_store
+    username: postgres
+    password: 123456
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maxLifetime: 1800000
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc.lob.non_contextual_creation: true
+    open-in-view: false
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/master.xml
+
+management:
+  metrics:
+    enable:
+      all: false
+  endpoint:
+    env:
+      keys-to-sanitize: password,secret,key,token
+      show-values: NEVER
+    prometheus:
+      enabled: false
+  info:
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: info, health
+      path-mapping:
+        info: /api/application/info
+        health: /health
+
+info:
+  application:
+    version: '@project.version@'
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} %+5level --- [%+15.15thread] %-40.40logger{36} : %msg%n"
+  level:
+    ROOT: INFO
+    ru.rtc.medline.application: INFO
+    org.springframework: INFO
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    url: /v3/api-docs
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: full
